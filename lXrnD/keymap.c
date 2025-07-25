@@ -11,18 +11,19 @@ enum custom_keycodes {
   HSV_74_255_206,
   HSV_152_255_255,
   ST_MACRO_0,
+  ST_MACRO_1,
 };
 
 
 
-#define DUAL_FUNC_0 LT(15, KC_9)
-#define DUAL_FUNC_1 LT(7, KC_F9)
-#define DUAL_FUNC_2 LT(7, KC_F16)
-#define DUAL_FUNC_3 LT(3, KC_W)
+#define DUAL_FUNC_0 LT(7, KC_F9)
+#define DUAL_FUNC_1 LT(9, KC_W)
+#define DUAL_FUNC_2 LT(7, KC_F23)
+#define DUAL_FUNC_3 LT(11, KC_F22)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
-    KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_1,           KC_2,           KC_3,           KC_4,           KC_5,           ST_MACRO_0,                                     KC_TRANSPARENT, KC_6,           KC_7,           KC_8,           KC_9,           KC_0,           KC_TRANSPARENT, 
     KC_DELETE,      KC_QUOTE,       KC_COMMA,       KC_DOT,         KC_P,           KC_Y,           KC_GRAVE,                                       KC_TRANSPARENT, KC_F,           KC_G,           KC_C,           KC_R,           KC_L,           KC_BSLS,        
     KC_ESCAPE,      KC_A,           MT(MOD_LALT, KC_O),MT(MOD_LSFT, KC_E),MT(MOD_LCTL, KC_U),KC_I,           KC_SLASH,                                                                       KC_EQUAL,       KC_D,           MT(MOD_RCTL, KC_H),MT(MOD_RSFT, KC_T),MT(MOD_RALT, KC_N),KC_S,           KC_MINUS,       
     KC_TRANSPARENT, KC_SCLN,        KC_Q,           KC_J,           KC_K,           KC_X,                                           KC_B,           KC_M,           KC_W,           KC_V,           KC_Z,           KC_TRANSPARENT, 
@@ -47,7 +48,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
   [3] = LAYOUT_moonlander(
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
-    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_0,     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
+    KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, ST_MACRO_1,     KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
     KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,                                                                                                 KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, 
@@ -118,6 +119,11 @@ bool rgb_matrix_indicators_user(void) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_MACRO_0:
+    if (record->event.pressed) {
+      SEND_STRING(SS_TAP(X_T)SS_DELAY(100)  SS_TAP(X_E)SS_DELAY(100)  SS_TAP(X_S)SS_DELAY(100)  SS_TAP(X_T)SS_DELAY(100)  SS_TAP(X_M)SS_DELAY(100)  SS_TAP(X_A)SS_DELAY(100)  SS_TAP(X_C)SS_DELAY(100)  SS_TAP(X_R)SS_DELAY(100)  SS_TAP(X_0));
+    }
+    break;
+    case ST_MACRO_1:
     if (record->event.pressed) {
       SEND_STRING(SS_LCTL(SS_TAP(X_R))SS_DELAY(100)  SS_RSFT(SS_TAP(X_QUOTE)));
     }
