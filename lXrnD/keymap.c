@@ -17,10 +17,10 @@ enum custom_keycodes {
 
 
 
-#define DUAL_FUNC_0 LT(7, KC_F9)
-#define DUAL_FUNC_1 LT(9, KC_W)
-#define DUAL_FUNC_2 LT(7, KC_F23)
-#define DUAL_FUNC_3 LT(11, KC_F22)
+#define DUAL_FUNC_0 LT(15, KC_F12)
+#define DUAL_FUNC_1 LT(11, KC_W)
+#define DUAL_FUNC_2 LT(7, KC_B)
+#define DUAL_FUNC_3 LT(13, KC_O)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_moonlander(
